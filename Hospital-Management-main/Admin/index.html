@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Login Page -->
+    <!-- <div id="login-page" class="login-container">
+      <h2>Admin Login</h2>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div> -->
+
+    <!-- <div id="login-page" class="login-container">
+      <h2>Admin Login</h2>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button id="submit" button="submit" >Login</button>
+      </form>
+    </div> -->
+
+    <!-- Admin Panel (Initially hidden) -->
+    <div id="admin-container" class="admin-container ">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Admin Panel</h2>
+        </div>
+        <ul class="nav-list">
+          <li><a href="#" onclick="showPage('dashboard')">Dashboard</a></li>
+          <li>
+            <a href="#" onclick="showPage('add-hospital')">Add Hospital</a>
+          </li>
+          <li>
+            <a href="#" onclick="showPage('manage-hospitals')"
+              >Manage Hospitals</a
+            >
+          </li>
+          <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+          <h1>Dashboard</h1>
+          <p>
+            Welcome to the admin panel. Here you can manage hospitals and view
+            stats.
+          </p>
+        </section>
+
+        <!-- Add/Edit Hospital Form -->
+        <section id="add-hospital" class="content-section">
+          <h1 id="form-title">Add Hospital</h1>
+          <!-- Dynamic title -->
+
+          <form id="hospital-form">
+            <input type="hidden" id="hospital-id" />
+            <!-- Hidden field to store hospital ID -->
+
+            <label for="name">Hospital Name</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required />
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" required />
+
+            <label for="pincode">Pincode</label>
+            <input type="text" id="pincode" name="pincode" required />
+
+            <label for="nonEmergencyBeds">Non-Emergency Beds</label>
+            <input
+              type="number"
+              id="nonEmergencyBeds"
+              name="nonEmergencyBeds"
+              required
+            />
+
+            <label for="emergencyBeds">Emergency Beds</label>
+            <input
+              type="number"
+              id="emergencyBeds"
+              name="emergencyBeds"
+              required
+            />
+
+            <!-- New Email Field -->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <!-- New Password Field -->
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"  />
+
+            <button type="submit" id="submit-btn">Add Hospital</button>
+          </form>
+        </section>
+
+        <!-- Manage Hospitals Section -->
+        <section id="manage-hospitals" class="content-section">
+          <h1>Manage Hospitals</h1>
+          <input
+            type="text"
+            id="search-hospital"
+            placeholder="Search by hospital name"
+            oninput="searchHospitals()"
+            style="margin-bottom: 20px; padding: 10px; width: 50%"
+          />
+          <table id="hospital-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>State</th>
+                <th>Pincode</th>
+                <th>Non-Emergency Beds</th>
+                <th>Emergency Beds</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Dynamic content goes here -->
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal for Editing Hospital -->
+    <!-- Edit Hospital Modal -->
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">×</span>
+        <h2>Edit Hospital</h2>
+        <form id="hospital-form">
+          <input type="hidden" id="hospital-id" />
+          <!-- Ensure consistency in IDs -->
+
+          <label for="name">Hospital Name</label>
+          <input type="text" id="name" required />
+
+          <label for="address">Address</label>
+          <input type="text" id="address" required />
+
+          <label for="state">State</label>
+          <input type="text" id="state" required />
+
+          <label for="pincode">Pincode</label>
+          <input type="text" id="pincode" required />
+
+          <label for="nonEmergencyBeds">Non-Emergency Beds</label>
+          <input type="number" id="nonEmergencyBeds" required />
+
+          <label for="emergencyBeds">Emergency Beds</label>
+          <input type="number" id="emergencyBeds" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+
+          <button type="submit" id="submit-btn">Update Hospital</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript for Functionality -->
+    <script src="app.js"></script>
+  </body>
+</html>

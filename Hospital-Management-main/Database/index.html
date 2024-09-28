@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firestore User Management</title>
+  </head>
+  <body>
+    <h2>User Information</h2>
+    <label for="first-name">First Name: </label>
+    <input type="text" id="first-name" />
+    <br /><br />
+    <label for="last-name">Last Name: </label>
+    <input type="text" id="last-name" />
+    <br /><br />
+    <label for="number">Number: </label>
+    <input type="number" id="number" />
+    <br /><br />
+
+    <button id="add">Add User</button>
+    <button id="retrieve">Retrieve User</button>
+    <button id="update">Update User</button>
+    <button id="delete">Delete User</button>
+
+    <script type="module">
+      // Import Firebase SDK
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDoc,
+        updateDoc,
+        deleteDoc,
+        doc,
+      } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+      import {
+        getAuth,
+        signInAnonymously,
+      } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+      // Your Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyC_RCts7ILiP_wqiglfOFwADid2rYAC-Sk",
+        authDomain: "ambul-driver.firebaseapp.com",
+        projectId: "ambul-driver",
+        storageBucket: "ambul-driver.appspot.com",
+        messagingSenderId: "1061302559097",
+        appId: "1:1061302559097:web:1c70fda02553f5a7e20fa8",
+        measurementId: "G-EYYE2KZKN3",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app);
+
+      // DOM Elements
+      let Fname = document.getElementById("first-name");
+      let Lname = document.getElementById("last-name");
+      let number = document.getElementById("number");
+      let add = document.getElementById("add");
+      let retrieve = document.getElementById("retrieve");
+      let update = document.getElementById("update");
+      let del = document.getElementById("delete");
+
+      // Firebase Auth: Anonymous login for testing
+      signInAnonymously(auth)
+        .then(() => {
+          console.log("User signed in anonymously");
+        })
+        .catch((error) => {
+          console.error("Error during anonymous login:", error);
+        });
+
+      // Add User Function
+      async function AddData() {
+        try {
+          const docRef = await addDoc(collection(db, "ur"), {
+            first: Fname.value,
+            last: Lname.value,
+            number: number.value,
+          });
+          alert("User added successfully");
+          console.log("Document ID: ", docRef.id);
+        } catch (error) {
+          console.error("Error adding document: ", error);
+        }
+      }
+
+      // Retrieve User Function
+      async function RetData() {
+        const userId = prompt("Enter the User ID to retrieve:");
+        const userDoc = doc(db, "ur", userId); // Replace "USER_DOC_ID" with dynamic input
+        const docSnap = await getDoc(userDoc);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          Fname.value = data.first;
+          Lname.value = data.last;
+          number.value = data.number;
+          console.log("Document data:", data);
+        } else {
+          console.log("No such document!");
+        }
+      }
+
+      // Update User Function
+      async function UpdateData() {
+        const userId = prompt("Enter the User ID to update:");
+        const userDoc = doc(db, "ur", userId);
+        try {
+          await updateDoc(userDoc, {
+            first: Fname.value,
+            last: Lname.value,
+            number: number.value,
+          });
+          alert("User updated successfully");
+        } catch (error) {
+          console.error("Error updating document: ", error);
+        }
+      }
+
+      // Delete User Function
+      async function DeletedData() {
+        const userId = prompt("Enter the User ID to delete:");
+        const userDoc = doc(db, "ur", userId);
+        try {
+          await deleteDoc(userDoc);
+          alert("User deleted successfully");
+        } catch (error) {
+          console.error("Error deleting document: ", error);
+        }
+      }
+
+      // Event Listeners for buttons
+      add.addEventListener("click", AddData);
+      retrieve.addEventListener("click", RetData);
+      update.addEventListener("click", UpdateData);
+      del.addEventListener("click", DeletedData);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,323 @@
+/* General Layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.admin-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed; /* Make the sidebar fixed */
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%; /* Full height of the viewport */
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Allow scrolling if the sidebar content exceeds the height */
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-list li {
+  margin: 20px 0;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  display: block;
+  padding: 10px;
+  transition: background 0.3s;
+}
+
+.nav-list a:hover {
+  background-color: #575757;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 270px; /* Space for the fixed sidebar */
+  padding: 30px; /* Padding around the content */
+  background-color: #f4f4f4;
+  flex-grow: 1; /* Allow the main content to grow */
+  gap: 20px; /* Gap between elements inside the main content */
+  display: flex;
+  flex-direction: column; /* Ensure gap works between stacked elements */
+}
+
+/* Other styles remain unchanged... */
+
+
+.content-section {
+  display: none;
+}
+
+.content-section.active {
+  display: block;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-top: 10px;
+}
+
+form input {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Button Styles */
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Login Page Styles */
+.login-container {
+  width: 350px;
+  padding: 30px;
+  margin: 100px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.login-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.login-container h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10% auto;
+  width: 50%;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Search Bar Styles */
+#search-hospital {
+  width: 200px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Hospital Table Styling */
+.hospital-table-container {
+  position: relative;
+}
+
+#hospital-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#hospital-table th,
+#hospital-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#hospital-table th {
+  background-color: #333;
+  color: white;
+}
+
+#hospital-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+#hospital-table td {
+  font-size: 16px;
+}
+
+#hospital-table .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-btn:hover {
+  opacity: 0.8;
+}
+
+.delete-btn:hover {
+  background-color: #8B0000;
+  opacity: 0.8;
+}
+
+/* Empty Message Styling */
+.empty-message {
+  display: none;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+/* Responsive Design for Table */
+@media screen and (max-width: 768px) {
+  #hospital-table th,
+  #hospital-table td {
+    padding: 10px;
+  }
+
+  #hospital-table th {
+    font-size: 14px;
+  }
+
+  #hospital-table td {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #hospital-table,
+  #hospital-table thead,
+  #hospital-table tbody,
+  #hospital-table th,
+  #hospital-table td,
+  #hospital-table tr {
+    display: block;
+  }
+
+  #hospital-table thead {
+    display: none;
+  }
+
+  #hospital-table tr {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #hospital-table td {
+    padding: 10px;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  #hospital-table td::before {
+    content: attr(data-label);
+    flex: 1;
+    font-weight: bold;
+    padding-right: 10px;
+    text-align: left;
+  }
+}
+
+/* Hidden Elements */
+.hidden {
+  display: none;
+}
